@@ -9,7 +9,7 @@ interface Documents {
 
 const documentSchema = new Schema<Documents>(
   {
-    url: { type: String, required: true },
+    url: { type: String, required: true, unique: true },
     name: { type: String, required: true },
     createdBy: { type: String, required: true },
   },

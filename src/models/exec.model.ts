@@ -8,7 +8,12 @@ interface Exec {
 const execSchema = new Schema<Exec>(
   {
     bio: { type: String, required: true },
-    user_id: { type: Schema.Types.ObjectId, ref: "cuser", required: true },
+    user_id: {
+      type: Schema.Types.ObjectId,
+      ref: "cuser",
+      required: true,
+      unique: true,
+    },
   },
   {
     timestamps: true,
