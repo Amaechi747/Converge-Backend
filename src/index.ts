@@ -2,7 +2,13 @@ import express, { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
 import 'dotenv/config';
 import logger from 'morgan';
+
 import userRouter from './routers/user.router';
+import attendeeRouter from './routers/attendees.router';
+import agendaRouter from './routers/agenda.router';
+import documentRouter from './routers/documents.router';
+import pollRouter from './routers/poll.router';
+import execRouter from './routers/exec.router'
 
 import createError, { HttpError, } from "http-errors";
 import { createUserController } from "./controllers/user.controller";
@@ -27,11 +33,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(logger('dev'));
 
 
-/**
- * Middleware
- * @body - { name, password, email, passwordChanged, phoneNum, team, pix }
- */
 app.use("/user", userRouter);
+app.use("/attendee", attendeeRouter);
+app.use("/doc", documentRouter);
+app.use("/poll", pollRouter);
+app.use("/agenda", agendaRouter);
+app.use("/exec", execRouter)
+
 
 
 // catch 404 and forward to error handler

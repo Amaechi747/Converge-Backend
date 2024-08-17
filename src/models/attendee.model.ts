@@ -1,51 +1,31 @@
-import dbPromise from "../database";
+import mongoose, { ObjectId, Schema } from "mongoose";
 
 interface Attendee {
   id: number;
-  name: string;
   company: string;
   position: string;
-  email: string;
-  phone: string;
-  image: string;
-
-  // team: string;
-  type: "attendee" | "speaker";
+  user_id: ObjectId;
 }
 
-// export const createAttendeeTable = async () => {
-//   const db = await dbPromise;
-//   await db.exec(`CREATE TABLE IF NOT EXISTS attendees (
-//     id INTEGER PRIMARY KEY AUTOINCREMENT,
-//     name TEXT NOT NULL,
-//     company TEXT NOT NULL,
-//     position TEXT NOT NULL,
-//     email TEXT NOT NULL,
-//     phone TEXT NOT NULL,
-//     image TEXT NOT NULL,
-//     type TEXT NOT NULL
-//   )`);
-// };
+const attendeeSchema = new Schema<Attendee>(
+  {
+    company: { type: String, required: true },
+    position: { type: String, required: true },
+    user_id: { type: Schema.Types.ObjectId, ref: "cuser", required: true },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-// export const createAttendee = async (
-//   name: string,
-//   company: string,
-//   position: string,
-//   email: string,
-//   phone: string,
-//   image: string,
-//   type: "attendee" | "speaker"
-// ) => {
-//   const db = await dbPromise;
-//   const result = await db.run(
-//     `INSERT INTO attendees (name, company, position, email, phone, image, type) VALUES (?, ?, ?, ?, ?, ?, ?)`,
-//     [name, company, position, email, phone, image, type]
-//   );
-//   return result;
-// };
+export const AttendeeModel = mongoose.model<Attendee>("attens", attendeeSchema);
 
-// export const getAttendees = async (): Promise<Attendee[]> => {
-//   const db = await dbPromise;
-//   const attendees = await db.all<Attendee[]>(`SELECT * FROM attendees`);
-//   return attendees;
-// };
+export const createAttendee = async(attendee: Omit<Attendee, "id">) => {
+  const data = await AttendeeModel.create(attendee);
+  return data?.save()
+}
+
+export const getAttendees = async () => {
+  const data = await AttendeeModel.find().populate('user_id');
+  return data;
+}

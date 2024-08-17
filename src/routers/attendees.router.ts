@@ -1,10 +1,10 @@
 import { Router } from "express";
-// import { getAttendees, getAttendee, createAttendee, updateAttendee, deleteAttendee } from "../controllers/attendees.controller";
+import { getAttendee, createAttendees } from "../controllers/attendee.controller";
 const router = Router();
 
-// router.get('/', getAttendees);
+router.get('/', getAttendee);
+router.post('/', createAttendees);
 // router.get('/:id', getAttendee);
-// router.post('/', createAttendee);
 // router.put('/:id', updateAttendee);
 // router.delete('/:id', deleteAttendee);
 

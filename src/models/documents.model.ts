@@ -1,37 +1,29 @@
-import dbPromise from "../database";
+import mongoose, { Schema } from "mongoose";
 
-interface Document {
+interface Documents {
   id: number;
   url: string;
   name: string;
   createdBy: string;
 }
 
-// export const createDocumentTable = async () => {
-//   const db = await dbPromise;
-//   await db.exec(`CREATE TABLE IF NOT EXISTS documents (
-//     id INTEGER PRIMARY KEY AUTOINCREMENT,
-//     url TEXT,
-//     name TEXT,
-//     createdBy TEXT
-//   )`);
-// };
+const documentSchema = new Schema<Documents>(
+  {
+    url: { type: String, required: true },
+    name: { type: String, required: true },
+    createdBy: { type: String, required: true },
+  },
+  { timestamps: true }
+);
 
-// export const createDocument = async (
-//   url: string,
-//   name: string,
-//   createdBy: string
-// ) => {
-//   const db = await dbPromise;
-//   const result = await db.run(
-//     `INSERT INTO documents (url, name, createdBy) VALUES (?, ?, ?)`,
-//     [url, name, createdBy]
-//   );
-//   return result;
-// };
+const DocModel = mongoose.model<Documents>("cdocs", documentSchema);
 
-// export const getDocuments = async (): Promise<Document[]> => {
-//   const db = await dbPromise;
-//   const documents = await db.all<Document[]>(`SELECT * FROM documents`);
-//   return documents;
-// };
+export const createDoc = async (arg: Omit<Documents, 'id'>) => {
+  const data = await DocModel.create(arg);
+  return data?.save()
+}
+
+export const getDocs = async () => {
+  const data = await DocModel.find();
+  return data;
+}

@@ -3,17 +3,19 @@ interface User {
   id: number;
   name: string;
   email: string;
+  pix: string;
+  phoneNum: string;
+
   password: string;
   passwordChanged: boolean;
-  phoneNum: string;
   team: string;
-  pix: string;
 }
 
 const userSchema = new Schema<User>(
   {
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
+    
     password: { type: String, required: true },
     passwordChanged: { type: Boolean, required: true, default: false },
     phoneNum: { type: String, required: true },
@@ -55,39 +57,3 @@ export const changeUserPassword = async (email: string, newPass: string) => {
     return await data.save();
   } else return null;
 };
-// export const createUserTable = async () => {
-//   const db = await dbPromise;
-//   await db.exec(`CREATE TABLE IF NOT EXISTS users (
-//     id INTEGER PRIMARY KEY AUTOINCREMENT,
-//     name TEXT NOT NULL,
-//     email TEXT NOT NULL,
-//     passwordChanged TEXT NOT NULL,
-//     password TEXT NOT NULL,
-//     phoneNum TEXT NOT NULL,
-//     team TEXT NOT NULL,
-//     pix TEXT NOT NULL
-//   )`);
-// };
-
-// export const createUser = async (
-//     name: string,
-//     email: string,
-//     passwordChanged: boolean,
-//     password: string,
-//     phoneNum: string,
-//     team: string,
-//     pix: string
-//     ) => {
-//   const db = await dbPromise;
-//   const result = await db.run(
-//     `INSERT INTO users (name, email, passwordChanged, password, phoneNum, team, pix) VALUES (?, ?, ?, ?, ?, ?, ?)`,
-//     [name, email, passwordChanged, password, phoneNum, team, pix]
-//   );
-//   return result;
-// };
-
-// export const getUsers = async (): Promise<User[]> => {
-//   const db = await dbPromise;
-//   const users = await db.all<User[]>(`SELECT * FROM users`);
-//   return users;
-// };

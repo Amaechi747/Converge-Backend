@@ -1,12 +1,16 @@
 import { Router } from "express";
-// import { getAttendees, getAttendee, createAttendee, updateAttendee, deleteAttendee } from "../controllers/polls.controller";
+import {
+  getVotingPolls,
+  getPollsAndOptions,
+  createVotingPoll,
+  voteByOptionId,
+} from "../controllers/poll.controller";
 const router = Router();
 
-// router.get('/', getAttendees);
-// router.get('/:id', getAttendee);
-// router.post('/', createAttendee);
-// router.put('/:id', updateAttendee);
+router.get("/", getVotingPolls);
+router.get("/with-options", getPollsAndOptions);
+router.post("/", createVotingPoll);
+router.put("/vote", voteByOptionId);
 // router.delete('/:id', deleteAttendee);
-
 
 export default router;
