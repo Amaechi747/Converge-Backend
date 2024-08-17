@@ -37,6 +37,12 @@ export const createAgenda = async (
 };
 
 export const getAgendasById = async (eventId: string) => {
-    const data = await AgendaModel.find({ eventId }).populate('speakerId');
+    const data = await AgendaModel.find({ eventId }).populate({
+      path: 'speakerId',
+      populate: {
+        path: 'user_id',
+        model: 'cuser'
+      }
+    }).exec();
     return data;
 }
