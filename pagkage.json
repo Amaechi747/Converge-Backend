@@ -1,0 +1,29 @@
+{
+    "name": "converge-backend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "start": "node dist/index.js",
+      "build": "tsc",
+      "dev": "nodemon src/index.ts",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Access",
+    "license": "ISC",
+    "dependencies": {
+      "uuidv4": "^6.2.13",
+      "@types/sqlite3": "^3.1.11",
+      "express": "^4.19.2",
+      "express-async-handler": "^1.2.0",
+      "sqlite": "^5.1.1"
+    },
+    "devDependencies": {
+      "@types/express": "^4.17.21",
+      "@types/node": "^22.4.0",
+      "nodemon": "^3.1.4",
+      "ts-node": "^10.9.2",
+      "typescript": "^5.5.4"
+    }
+  }
+  

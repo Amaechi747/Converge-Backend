@@ -23,12 +23,12 @@ app.get('/create-user', async (req: Request, res: Response) => {
 
     } catch (error) {
         
+      res.send('Hello, TypeScript with Express!');
     }
 
 
 
 
-  res.send('Hello, TypeScript with Express!');
 });
 
 app.listen(PORT, () => {
