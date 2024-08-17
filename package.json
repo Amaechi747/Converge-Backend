@@ -12,7 +12,8 @@
   "author": "Access",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
