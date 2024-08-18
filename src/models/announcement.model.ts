@@ -6,7 +6,7 @@ export interface Announcement {
     title: string;
     description: string;
     location: string;
-    receiptient?: string;
+    recipient?: string;
 }
 
 const announcementSchema = new Schema<Announcement>(
@@ -14,7 +14,7 @@ const announcementSchema = new Schema<Announcement>(
         title: { type: String, required: true },
         description: { type: String, required: true },
         location: { type: String, required: false },
-        receiptient: { type: String, required: false, default: "all" },
+        recipient: { type: String, required: false, default: "all" },
     },
     { timestamps: true }
 );
@@ -26,7 +26,20 @@ export const createAnnouncement = async (arg: Announcement) => {
     return await data?.save();
 };
 
-export const getAnnouncements = async () => {
-    const data = await AnnouncementModel.find();
+// export const getAnnouncements = async () => {
+//     const data = await AnnouncementModel.find();
+//     return data;
+// };
+
+export const getAnnouncements = async (email: string) => {
+    // const data = await AnnouncementModel.find({ recipient: { $eq: email } });
+    console.log('emai', email)
+    const data = await AnnouncementModel.find({
+        $or: [
+            { recipient: email },
+            { recipient: null },
+            { recipient: 'all' },
+        ]
+    });
     return data;
 };

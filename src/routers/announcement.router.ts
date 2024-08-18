@@ -6,7 +6,8 @@ import {
 
 const router = Router();
 
-router.get("/", getAnnouncement);
+router.post("/", getAnnouncement);
+// router.get("/", getAnnouncement);
 router.post("/", createAnnouncements);
 
 
