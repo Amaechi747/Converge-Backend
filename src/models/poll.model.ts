@@ -64,7 +64,9 @@ export const createPoll = async ({ question, options }: PollPayload) => {
 };
 
 export const getPolls = async () => {
-  const res = await PollModel.find();
+  const res = await PollModel.find().sort({
+    createdAt: -1
+  });
   return res;
 };
 

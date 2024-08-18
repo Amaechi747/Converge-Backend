@@ -35,11 +35,11 @@ export const getAnnouncements = async (email: string) => {
     // const data = await AnnouncementModel.find({ recipient: { $eq: email } });
     console.log('emai', email)
     const data = await AnnouncementModel.find({
-        // $or: [
-        //     { recipient: email },
-        //     { recipient: null },
-        //     { recipient: 'all' },
-        // ]
+        $or: [
+            { recipient: email },
+            { recipient: null },
+            { recipient: 'all' },
+        ]
     }).sort({ createdAt: -1 });
     return data;
 };
