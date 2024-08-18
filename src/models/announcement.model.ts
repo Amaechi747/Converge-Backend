@@ -37,9 +37,9 @@ export const getAnnouncements = async (email: string) => {
     const data = await AnnouncementModel.find({
         $or: [
             { recipient: email },
-            // { recipient: { $ne: email } }, 
+            { recipient: null },
             { recipient: 'all' },
         ]
-    }).sort({createdAt: -1});
+    }).sort({ createdAt: -1 });
     return data;
 };
