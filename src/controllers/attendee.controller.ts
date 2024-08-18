@@ -22,6 +22,8 @@ export const createAttendees = expressAsyncHandler(
   }
 );
 
+
+
 export const getAttendee = expressAsyncHandler(
     async (req: Request, res: Response) => {
         const data = await getAttendees();
@@ -30,3 +32,5 @@ export const getAttendee = expressAsyncHandler(
             data,
         })
     });
+
+

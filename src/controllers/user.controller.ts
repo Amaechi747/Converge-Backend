@@ -1,6 +1,6 @@
 import expressAsyncHandler from "express-async-handler";
 import { Request, Response } from "express";
-import { changeUserPassword, createUser, getUserByEmail } from "../models/user";
+import { changeUserPassword, createManyUser, createUser, getUserByEmail } from "../models/user";
 
 /**
  * @Middleware
@@ -31,7 +31,9 @@ export const createUserController = expressAsyncHandler(
         .json({ message: "User created successfully", data: response });
     } catch (error) {
       console.log(error);
-      res.json({
+      res
+        .status(403)
+        .json({
         error,
       });
     }
@@ -85,3 +87,23 @@ export const changeUsersPassword = expressAsyncHandler(
     }
   }
 );
+
+export const createManyUserController = expressAsyncHandler(
+  async (req: Request, res: Response) => {
+    const { newUsers } =
+      req.body;
+    try {
+      const response = await createManyUser(newUsers);
+      res
+        .status(201)
+        .json({ message: "Multiple users created successfully", data: response });
+    } catch (error) {
+      console.log(error);
+      res
+        .status(403)
+        .json({
+        error,
+      });
+    }
+  }
+)
