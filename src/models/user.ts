@@ -34,6 +34,11 @@ export const createUser = async (user: Omit<User, "id" | "passwordChanged">) => 
   return data?.save();
 };
 
+export const createManyUser = async (users: Omit<User, "id" | "passwordChanged">[]) => {
+  const data = await UserModel.insertMany(users);
+  return data;
+};
+
 export const getUsers = async () => {
   const data = await UserModel.find();
   return data;
