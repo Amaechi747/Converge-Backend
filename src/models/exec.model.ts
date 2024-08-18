@@ -3,11 +3,15 @@ import mongoose, { ObjectId, Schema } from "mongoose";
 interface Exec {
   bio: string;
   user_id: ObjectId;
+  company: string;
+  position: string;
 }
 
 const execSchema = new Schema<Exec>(
   {
     bio: { type: String, required: true },
+    company: { type: String, required: true },
+    position: { type: String, required: true },
     user_id: {
       type: Schema.Types.ObjectId,
       ref: "cuser",
@@ -30,6 +34,7 @@ export const createSpeaker = async (val: Exec) => {
 
 export const createDirector = async (val: Exec) => {
   const data = await DirectorModel.create(val);
+  console.log(data);
   return data?.save();
 };
 

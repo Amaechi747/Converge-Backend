@@ -68,6 +68,11 @@ export const getPolls = async () => {
   return res;
 };
 
+export const getOptions = async () => {
+  const res = await PollOptionModel.find();
+  return res;
+}
+
 export const getPollsOptionsByPollId = async (pollId: string) => {
   const data = await PollOptionModel.find({ pollId });
   return data;
@@ -81,6 +86,7 @@ export const incrementOptionCount = async (optionId: string) => {
     },
     { new: true }
   );
-
+  console.log(data, optionId);
   return data;
+
 };

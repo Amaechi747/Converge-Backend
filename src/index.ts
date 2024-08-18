@@ -8,7 +8,9 @@ import attendeeRouter from './routers/attendees.router';
 import agendaRouter from './routers/agenda.router';
 import documentRouter from './routers/documents.router';
 import pollRouter from './routers/poll.router';
-import execRouter from './routers/exec.router'
+import execRouter from './routers/exec.router';
+import announcementRouter from './routers/announcement.router';
+import questionRouter from './routers/question.router';
 
 import createError, { HttpError, } from "http-errors";
 import { createUserController } from "./controllers/user.controller";
@@ -38,7 +40,9 @@ app.use("/attendee", attendeeRouter);
 app.use("/doc", documentRouter);
 app.use("/poll", pollRouter);
 app.use("/agenda", agendaRouter);
-app.use("/exec", execRouter)
+app.use("/exec", execRouter);
+app.use("/announcement", announcementRouter);
+app.use("/questions", questionRouter);
 
 
 

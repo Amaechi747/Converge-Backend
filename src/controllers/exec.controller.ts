@@ -20,7 +20,8 @@ export const createDirectors = expressAsyncHandler(
       const dat = req.body;
       const data = await createDirector(dat);
       res.status(200).json({ data, message: "Successful" });
-    } catch {
+    } catch (e) {
+      console.log(e);
       res.status(401).json({ message: "Failed to create attendee" });
     }
   }
@@ -52,7 +53,7 @@ export const getAllDirectors = expressAsyncHandler(
   }
 );
 
-export const getAllSpeakers= expressAsyncHandler(
+export const getAllSpeakers = expressAsyncHandler(
   async (req: Request, res: Response) => {
     const data = await getSpeakers();
     res.status(200).json({ data, message: "Successful" });
