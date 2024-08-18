@@ -10,7 +10,7 @@ const router = Router();
 router.get("/", getVotingPolls);
 router.get("/with-options", getPollsAndOptions);
 router.post("/", createVotingPoll);
-router.put("/vote", voteByOptionId);
+router.post("/vote", voteByOptionId);
 // router.delete('/:id', deleteAttendee);
 
 export default router;

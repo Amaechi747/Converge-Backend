@@ -14,10 +14,11 @@ export const createDocs = expressAsyncHandler(
   async (req: Request, res: Response) => {
     const { url, name, createdBy } = req.body;
     try {
-        const data = await createDoc({ url, name, createdBy });
-        res.status(200).json({message: 'Successful', data})
+      const data = await createDoc({ url, name, createdBy });
+      res.status(200).json({ message: 'Successful', data })
     } catch (error) {
-        res.status(401).json({ message: "Failed to create attendee" });
+      console.log(error);
+      res.status(401).json({ message: "Failed to create attendee" });
     }
   }
 );
@@ -26,8 +27,8 @@ export const getDocuments = expressAsyncHandler(
   async (req: Request, res: Response) => {
     const data = await getDocs();
     res.status(200).json({
-        message: 'Successful',
-        data,
+      message: 'Successful',
+      data,
     })
   }
 );

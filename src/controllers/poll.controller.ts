@@ -6,6 +6,7 @@ import {
   getPollsOptionsByPollId,
   incrementOptionCount,
   PollPayload,
+  getOptions
 } from "../models/poll.model";
 
 export const getVotingPolls = expressAsyncHandler(
@@ -18,9 +19,7 @@ export const getVotingPolls = expressAsyncHandler(
 export const getPollsAndOptions = expressAsyncHandler(
   async (req: Request, res: Response) => {
     const polls = await getPolls();
-    const response = await Promise.allSettled(
-      polls.map(({ id }) => getPollsOptionsByPollId(id))
-    );
+    const response = await getOptions();
     res.status(200).json({ polls, options: response });
   }
 );
@@ -54,7 +53,7 @@ export const createVotingPoll = expressAsyncHandler(
  */
 export const voteByOptionId = expressAsyncHandler(
   async (req: Request, res: Response) => {
-    const {optionId} = req.body;
+    const { optionId } = req.body;
     const data = await incrementOptionCount(optionId);
     res.status(200).json({
       message: "Successful",
