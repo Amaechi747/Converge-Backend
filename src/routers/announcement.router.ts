@@ -8,7 +8,7 @@ const router = Router();
 
 router.post("/", getAnnouncement);
 // router.get("/", getAnnouncement);
-router.post("/", createAnnouncements);
+router.post("/create", createAnnouncements);
 
 
 export default router;
