@@ -8,7 +8,7 @@ import {
 const router = Router();
 
 router.get("/all", getAllEvents);
-router.get("/", getAgenda);
+router.get("/:eventId", getAgenda);
 router.post("/host", createAnEvent);
 router.post("/create", createAnAgenda);
 // router.put("/vote", voteByOptionId);

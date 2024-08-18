@@ -71,7 +71,8 @@ export const createAnAgenda = expressAsyncHandler(
 export const getAgenda = expressAsyncHandler(
   async (req: Request, res: Response) => {
     try {
-      const { eventId } = req.body;
+      const eventId = req.params.id;
+      // const { eventId } = req.body;
       const data = await getAgendasById(eventId);
       res.status(200).json({ data, message: "Successful" });
     } catch (err: any) {
