@@ -1,5 +1,5 @@
 // import sqlite3 from "sqlite3";
-import { open } from "sqlite";
+// import { open } from "sqlite";
 import { resolve } from "path";
 import { mkdirSync } from "fs";
 import { dirname } from "path";

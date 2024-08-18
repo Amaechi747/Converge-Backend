@@ -53,7 +53,7 @@ export const loginUserController = expressAsyncHandler(
     try {
       const user = await getUserByEmail(email);
       if (user && user.password === password) {
-        res.json({ message: "Login successful", data: user });
+        res.status(200).json({ message: "Login successful", data: user });
       } else {
         res.status(401).json({ message: "Invalid password" });
       }

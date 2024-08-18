@@ -7,7 +7,7 @@ import expressAsyncHandler from "express-async-handler";
 export const createAnnouncements = expressAsyncHandler(async (req: Request, res: Response) => {
 
     const value = req.body;
-    console.log("createAnnouncements");
+    
     try {
         const data = await createAnnouncement(value);
         res.status(200).json({ message: "Attendee created", data });
@@ -19,9 +19,9 @@ export const createAnnouncements = expressAsyncHandler(async (req: Request, res:
 
 export const getAnnouncement = expressAsyncHandler(async (req: Request, res: Response) => {
 
-    console.log("getAnnouncement");
+    const { email } = req.body; 
     try {
-        const data = await getAnnouncements();
+        const data = await getAnnouncements(email);
         res.status(200).json({ data, message: "Successful" });
     } catch {
         res.status(401).json({ message: "Failed to create attendee" });
