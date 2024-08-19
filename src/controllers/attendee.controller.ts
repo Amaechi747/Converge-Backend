@@ -1,11 +1,7 @@
 import expressAsyncHandler from "express-async-handler";
 import { Request, Response } from "express";
 import { createAttendee, getAttendees } from "../models/attendee.model";
-<<<<<<< HEAD
-import { UserModel } from "../models/user";
-=======
 import { getUserByEmail } from "../models/user";
-
 /**
  * @Middleware
  * @Body - {
@@ -26,8 +22,6 @@ export const createAttendees = expressAsyncHandler(
   }
 );
 
-<<<<<<< HEAD
-=======
 export const createAttendeeByUserEmail = expressAsyncHandler(
   async (req: Request, res: Response) => {
     const { attendees } = req.body;
@@ -49,22 +43,13 @@ export const createAttendeeByUserEmail = expressAsyncHandler(
   }
 );
 
->>>>>>> c314a1a0974f1be934924bf649eed7589b0f40b7
 export const getAttendee = expressAsyncHandler(
-  async (req: Request, res: Response) => {
-    const data = await getAttendees();
-    res.status(200).json({
-<<<<<<< HEAD
-      message: 'Successful',
-      data,
-    })
-  });
-
-
-=======
-      message: "Successful",
-      data,
+    async (req: Request, res: Response) => {
+        const data = await getAttendees();
+        res.status(200).json({
+            message: 'Successful',
+            data,
+        })
     });
-  }
-);
->>>>>>> c314a1a0974f1be934924bf649eed7589b0f40b7
+
+
