@@ -2,7 +2,6 @@ import expressAsyncHandler from "express-async-handler";
 import { Request, Response } from "express";
 import { createAttendee, getAttendees } from "../models/attendee.model";
 import { getUserByEmail } from "../models/user";
-
 /**
  * @Middleware
  * @Body - {
@@ -45,11 +44,12 @@ export const createAttendeeByUserEmail = expressAsyncHandler(
 );
 
 export const getAttendee = expressAsyncHandler(
-  async (req: Request, res: Response) => {
-    const data = await getAttendees();
-    res.status(200).json({
-      message: "Successful",
-      data,
+    async (req: Request, res: Response) => {
+        const data = await getAttendees();
+        res.status(200).json({
+            message: 'Successful',
+            data,
+        })
     });
-  }
-);
+
+
